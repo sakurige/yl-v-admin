@@ -1,9 +1,8 @@
 <script lang="ts" setup>
   import { ref } from "vue";
+  import type { FormRules } from "element-plus";
   import SvgIcon from "@/components/svg-icon/index.vue";
-  import { getAssetsURL } from "@/utils";
-  const name = ref("");
-  const password = ref("");
+  import { getAssetsURL, validatorPassword, validatorUsername } from "@/utils";
   // 密码输入框 相关
   const iptType = ref("password");
   const iconPath = ref("/svg/eye.svg");
@@ -14,22 +13,47 @@
         ? "/svg/eye.svg"
         : "/svg/eye-open.svg";
   };
+  // 表单验证相关
+  const rules = ref<FormRules>({
+    username: [
+      {
+        required: true,
+        validator: validatorUsername(),
+        trigger: "blur",
+      },
+    ],
+    password: [
+      {
+        required: true,
+        validator: validatorPassword(),
+        trigger: "blur",
+      },
+    ],
+  });
+  const userInfo = ref({
+    username: "super-admin",
+    password: "123456",
+  });
 </script>
 <template>
   <div class="login-box">
-    <el-form class="login-form">
+    <el-form :model="userInfo" :rules="rules" class="login-form">
       <div class="form-title">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form-item>
+      <el-form-item prop="username">
         <span>
           <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
         </span>
-        <el-input v-model="name" placeholder="用户名" />
+        <el-input v-model="userInfo.username" placeholder="用户名" />
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <svg-icon :icon="getAssetsURL('/svg/password.svg')" />
-        <el-input v-model="password" placeholder="密码" :type="iptType" />
+        <el-input
+          v-model="userInfo.password"
+          placeholder="密码"
+          :type="iptType"
+        />
         <span class="eye-icon" @click="showText">
           <svg-icon :icon="getAssetsURL(iconPath)"></svg-icon>
         </span>
