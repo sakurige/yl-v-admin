@@ -16,21 +16,21 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
-          prefix: "Icon",
-        }),
+          prefix: "Icon"
+        })
       ],
-      imports: ["vue"],
+      imports: ["vue"]
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver()]
     }),
     Icons({
-      autoInstall: true,
-    }),
+      autoInstall: true
+    })
   ],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
+      "@": fileURLToPath(new URL("./src", import.meta.url))
+    }
+  }
 });

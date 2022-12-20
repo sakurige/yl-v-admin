@@ -7,5 +7,6 @@ import pinia from "./stores";
 import "normalize.css";
 import "@/assets/style/index.less";
 import "./utils/router/permission-routes";
+console.log(import.meta.env);
 
 createApp(App).use(router).use(pinia).mount("#app");

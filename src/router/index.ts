@@ -5,11 +5,11 @@ const routes: RouteRecordRaw[] = [
   {
     name: "login",
     path: "/login",
-    component: () => import("@/views/login/login.vue"),
-  },
+    component: () => import("@/views/login/login.vue")
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 export default router;

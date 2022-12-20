@@ -1,8 +1,6 @@
 class Storage {
   static instance: Storage;
 
-  private constructor() {}
-
   static getInstance() {
     if (this.instance) {
       return this.instance;

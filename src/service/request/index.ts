@@ -23,5 +23,5 @@ class Request {
 }
 
 export default new Request({
-  baseURL: BASE_URL,
+  baseURL: BASE_URL
 });

@@ -6,19 +6,19 @@ module.exports = {
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
-    "@vue/eslint-config-typescript",
-    "@vue/eslint-config-prettier",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "plugin:prettier/recommended"
   ],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: "latest"
   },
   rules: {
     "vue/multi-word-component-names": [
       "off",
       {
-        ignores: ["index"],
-      },
-    ],
-    "prettier/prettier": ["off"],
-  },
+        ignores: ["index"]
+      }
+    ]
+  }
 };
