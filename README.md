@@ -21,3 +21,11 @@ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ## 集成 VueRouter 与 Pinia
 
 ## 样式重置
+
+## 创建登录组件 具备以下功能
+
+1. 密码框的 type 更换
+2. 请求接口功能
+3. 自定义 sgv 图标组件
+4. 对 localstorage 单例模式封装
+5. token 保存 localstorage

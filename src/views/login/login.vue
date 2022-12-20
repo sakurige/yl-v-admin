@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-  import { ref } from "vue";
+  import { ref, watchEffect } from "vue";
   import type { FormRules } from "element-plus";
   import SvgIcon from "@/components/svg-icon/index.vue";
   import { getAssetsURL, validatorPassword, validatorUsername } from "@/utils";
+  import useLoginStore from "@/stores/modules/login";
+
+  import storage from "@/utils/storage";
   // 密码输入框 相关
   const iptType = ref("password");
   const iconPath = ref("/svg/eye.svg");
@@ -34,6 +37,18 @@
     username: "super-admin",
     password: "123456",
   });
+  //  请求相关
+  const loginStore = useLoginStore();
+
+  const loginHandler = () => {
+    loginStore.fetchLoginToken(userInfo.value);
+  };
+  // 存储相关
+  watchEffect(() => {
+    storage.setItem("token", loginStore.token);
+    const v = storage.getItem("token");
+    console.log(typeof v);
+  });
 </script>
 <template>
   <div class="login-box">
@@ -51,14 +66,14 @@
         <svg-icon :icon="getAssetsURL('/svg/password.svg')" />
         <el-input
           v-model="userInfo.password"
-          placeholder="密码"
           :type="iptType"
+          placeholder="密码"
         />
         <span class="eye-icon" @click="showText">
           <svg-icon :icon="getAssetsURL(iconPath)"></svg-icon>
         </span>
       </el-form-item>
-      <el-button>登录</el-button>
+      <el-button @click="loginHandler">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -76,12 +91,14 @@
       padding: 160px 35px 0;
       margin: 0 auto;
       overflow: hidden;
+
       .el-form-item {
         border: 1px solid rgba(255, 255, 255, 0);
         background-color: #b2fefa40;
         border-radius: 5px;
         color: #fff;
         padding-left: 12px;
+
         :deep(.el-input) {
           display: inline-block;
           height: 47px;
@@ -117,6 +134,7 @@
             color: #fff;
           }
         }
+
         .eye-icon {
           padding-left: 20px;
         }
