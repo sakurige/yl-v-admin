@@ -8,9 +8,11 @@ import Components from "unplugin-vue-components/vite";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
-// https://vitejs.dev/config/
+// 配置WindiCSS
+import WindiCSS from "vite-plugin-windicss";
 export default defineConfig({
   plugins: [
+    WindiCSS(),
     vue(),
     AutoImport({
       resolvers: [

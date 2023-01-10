@@ -7,5 +7,8 @@ import pinia from "./stores";
 import "normalize.css";
 import "@/assets/style/index.less";
 import "./utils/router/permission-routes";
+// WindiCSS
+import "virtual:windi.css";
+import "virtual:windi-devtools";
 
 createApp(App).use(router).use(pinia).mount("#app");
